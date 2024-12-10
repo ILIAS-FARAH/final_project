@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .gallery-img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            transition: opacity 0.3s, border 0.3s;
+            border: 2px solid transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gallery">
+        <img src="https://via.placeholder.com/200x150?text=Image+1" alt="Description of image 1" class="gallery-img" tabindex="0">
+        <img src="https://via.placeholder.com/200x150?text=Image+2" alt="Description of image 2" class="gallery-img" tabindex="0">
+        <img src="https://via.placeholder.com/200x150?text=Image+3" alt="Description of image 3" class="gallery-img" tabindex="0">
+        <img src="https://via.placeholder.com/200x150?text=Image+4" alt="Description of image 4" class="gallery-img" tabindex="0">
+        <img src="https://via.placeholder.com/200x150?text=Image+5" alt="Description of image 5" class="gallery-img" tabindex="0">
+        <img src="https://via.placeholder.com/200x150?text=Image+6" alt="Description of image 6" class="gallery-img" tabindex="0">
+    </div>
+
+    <script>
+        // Select all images in the gallery
+        const images = document.querySelectorAll('.gallery-img');
+
+        // Function for onmouseover
+        function handleMouseOver(event) {
+            event.target.style.opacity = 0.7; // Example behavior
+            console.log("Mouseover event triggered on", event.target);
+        }
+
+        // Function for onmouseleave
+        function handleMouseLeave(event) {
+            event.target.style.opacity = 1; // Reset opacity
+            console.log("Mouseleave event triggered on", event.target);
+        }
+
+        // Function for onfocus
+        function handleFocus(event) {
+            event.target.style.border = '2px solid blue'; // Example behavior
+            console.log("Focus event triggered on", event.target);
+        }
+
+        // Function for onblur
+        function handleBlur(event) {
+            event.target.style.border = ''; // Reset border
+            console.log("Blur event triggered on", event.target);
+        }
+
+        // Add event listeners to each image
+        images.forEach(img => {
+            img.addEventListener('mouseover', handleMouseOver);
+            img.addEventListener('mouseleave', handleMouseLeave);
+            img.addEventListener('focus', handleFocus);  // onfocus
+            img.addEventListener('blur', handleBlur);    // onblur
+        });
+
+        // Add onload event listener
+        window.addEventListener('load', function() {
+            console.log("Page has finished loading");
+            addTabindex(); // Call function to add tabindex
+        });
+
+        // Function to add tabindex to each image
+        function addTabindex() {
+            const images = document.querySelectorAll('.gallery-img');
+            images.forEach(img => {
+                img.setAttribute('tabindex', '0');
+                console.log("Tabindex added to", img);
+            });
+        }
+    </script>
+
+</body>
+</html>
